@@ -30,10 +30,10 @@ read_power_data <- function(data_file, date_list) {
                              colClasses = rep("character", 9))) %>%
     filter(Date %in% date_list) %>%
     mutate(Date_time = dmy_hms(paste(Date, Time))) %>%
-    select(Date_time, Weekday, (3:9))
+    select(Date_time, (3:9))
 
   # Coerce the numerical data
-  power_data[,3:9] <- lapply(power_data[,3:9], as.numeric)
+  power_data[,2:8] <- lapply(power_data[,2:8], as.numeric)
   # Return the tidy data
   power_data
 }
