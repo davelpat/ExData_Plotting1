@@ -51,6 +51,7 @@ with(feb_pwr, {
   # colors and legend are in sync, while the colors to be easily changed
   # If more, or fewer, data points were desired, only the two character
   # vectors would need to be updated; the code for the plot would remain the same
+  # sub_metering <- labels(feb_pwr)[[2]][6:8]
   sub_metering <- c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3")
   sub_meter_colors <- c("black", "red", "blue")  
   for(ds in seq_along(sub_metering)) {

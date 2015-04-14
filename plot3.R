@@ -24,24 +24,22 @@ png(filename = "plot3.png", width = 480, height = 480)
 # Create and write the plot
 # First create the empty plot, then add the sub metering data one at a time
 # Finally add the legend
-with(feb_pwr, {
-     plot(feb_pwr$Date_time, 
-          feb_pwr$Sub_metering_1, 
-          type="n", xlab="", 
-          ylab="Energy sub metering")
-     points(feb_pwr$Date_time, 
-            feb_pwr$Sub_metering_1, 
-            type="l", col="black")
-     points(feb_pwr$Date_time, 
-            feb_pwr$Sub_metering_2, 
-            type="l", col="red")
-     points(feb_pwr$Date_time, 
-            feb_pwr$Sub_metering_3, 
-            type="l", col="blue")
-     legend("topright", lty = 1, 
-            legend = c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"),
-            col = c("black", "red", "blue"))
-})
+plot(feb_pwr$Date_time, 
+     feb_pwr$Sub_metering_1, 
+     type="n", xlab="", 
+     ylab="Energy sub metering")
+points(feb_pwr$Date_time, 
+       feb_pwr$Sub_metering_1, 
+       type="l", col="black")
+points(feb_pwr$Date_time, 
+       feb_pwr$Sub_metering_2, 
+       type="l", col="red")
+points(feb_pwr$Date_time, 
+       feb_pwr$Sub_metering_3, 
+       type="l", col="blue")
+legend("topright", lty = 1, 
+       legend = c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"),
+       col = c("black", "red", "blue"))
 
 # Close the file
 dev.off()

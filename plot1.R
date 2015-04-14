@@ -22,11 +22,10 @@ if(!"feb_pwr" %in% ls()) {
 png(filename = "plot1.png", width = 480, height = 480)
 
 # Create and write the plot
-with(feb_pwr, 
-     hist(feb_pwr$Global_active_power, 
-          col = "red", 
-          main = "Global Active Power", 
-          xlab = "Global Active Power (kilowatts)"))
+hist(feb_pwr$Global_active_power, 
+     col = "red", 
+     main = "Global Active Power", 
+     xlab = "Global Active Power (kilowatts)")
 
 # Close the file
 dev.off()
