@@ -22,6 +22,7 @@ if(!"feb_pwr" %in% ls()) {
 png(filename = "plot2.png", width = 480, height = 480)
 
 # Create and write the plot
+# plot(seleccion$Global_active_power~seleccion$Date_and_Time, type="l",xlab="",ylab="Global Active Power (kilowatts)")
 plot(feb_pwr$Date_time, 
      feb_pwr$Global_active_power, 
      type="l", xlab="", 
