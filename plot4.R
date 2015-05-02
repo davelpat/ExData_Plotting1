@@ -35,15 +35,15 @@ with(feb_pwr, {
   par(mfcol = c(2, 2))
   
   # Upper left plot is just like plot2.png
-  plot(feb_pwr$Date_time, 
-       feb_pwr$Global_active_power, 
+  plot(Date_time, 
+       Global_active_power, 
        type=line_style, 
        xlab="", ylab="Global Active Power")
   
   # Lower left plot is like plot3.png, but constructed more compactly
   # First the empty plot is created
-  plot(feb_pwr$Date_time, 
-       feb_pwr$Sub_metering_1, 
+  plot(Date_time, 
+       Sub_metering_1, 
        type=no_data, 
        xlab="", ylab="Energy sub metering")
   # Now add the sub metering data one at a time in a loop
@@ -55,23 +55,23 @@ with(feb_pwr, {
   sub_metering <- c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3")
   sub_meter_colors <- c("black", "red", "blue")  
   for(ds in seq_along(sub_metering)) {
-    points(feb_pwr$Date_time, 
+    points(Date_time, 
            feb_pwr[[sub_metering[ds]]], 
            type=line_style, col=sub_meter_colors[ds])}
   # Finally add the legend
   legend("topright", lty = line_type, bty=no_border, 
          legend = sub_metering, col = sub_meter_colors)
-
+  
   
   # The plots for the right column are constructed just like the upper
   # left plot, using a different variable for the y axis
-  plot(feb_pwr$Date_time, 
-       feb_pwr$Voltage, 
+  plot(Date_time, 
+       Voltage, 
        type = line_style, 
        xlab = "datetime", ylab = "Voltage")
   
-  plot(feb_pwr$Date_time,
-       feb_pwr$Global_reactive_power,
+  plot(Date_time,
+       Global_reactive_power,
        type = line_style, 
        xlab = "datetime", ylab = "Global_reactive_power")
   
