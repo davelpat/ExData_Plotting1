@@ -18,16 +18,23 @@ read_power_data <- function(data_file, date_list) {
     stop('Cannot find ', data_file)
   }
   # Read in the requested data and replace the Date and Time variables.
-  # Only the first 70,000 of the data file are read in because all the data we are 
-  # interested in for this project are in those lines; there is no need nor value
-  # in reading in the other 2 million lines. If later data is needed, that value
-  # would need to be updated or deleted.
+  # Only lines 66,000 through 70,000 of the data file are read in because all the
+  # data we are interested in for this project are in those lines; there is no need
+  # nor value in reading in the other 2 million lines. If other data is needed, that
+  # window would need to be updated or deleted.
   # All the data is read in as type character to speed the read; otherwise, fread 
   # would evaluate all the data as it is read in to guess the data type.
-  power_data <- tbl_df(fread(data_file, 
-                             nrows = 70000, 
-                             header = TRUE, sep = ";", 
-                             colClasses = rep("character", 9))) %>%
+#
+# First version with fread. fread would still be preferable, but doesn't take col.names
+#   power_data <- tbl_df(fread(data_file, 
+#                              nrows = 70000, 
+#                              header = TRUE, sep = ";", 
+#                              colClasses = rep("character", 9))) %>%
+  col_headers <- names(read.csv2(data_file, header = TRUE, nrows = 1))
+  power_data <- tbl_df(read.csv2(data_file, 
+                                 skip = 66000, nrows = 4000, 
+                                 header = FALSE, col.names = col_headers,
+                                 na.strings="?")) %>%
     filter(Date %in% date_list) %>%
     mutate(Date_time = dmy_hms(paste(Date, Time))) %>%
     select(Date_time, (3:9))
